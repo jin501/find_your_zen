@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/find_your_zen'
+
+FindYourZen::CLI.new.call

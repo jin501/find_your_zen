@@ -1,5 +1,5 @@
-require "find_your_zen/version"
 
-module FindYourZen
-  # Your code goes here...
-end
+require 'nokogiri'
+
+require_relative "find_your_zen/version"
+require_relative './find_your_zen/cli'

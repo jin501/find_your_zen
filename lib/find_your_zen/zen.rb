@@ -1,4 +1,7 @@
 class FindYourZen::Zen
 
-attr_accessor :name, :location, :day, :time, :level, :specials
+attr_accessor :name, :description, :yama, :niyama
 
+
+
+end

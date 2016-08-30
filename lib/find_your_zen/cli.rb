@@ -1,9 +1,17 @@
 #Our CLI Controller
-class FreeFitness::CLI
+class FindYourZen::CLI
 
   def call
-    puts "[ > Free Fitness Classes in NYC < ]"
-    menu 
+    intro
+    menu
+  end
+  
+  def intro
+    puts "------------------------------------"
+    # FindYourZen::Scraper.new.intro
+    puts "------------------------------------"
+    puts ""
+     
   end
 
   def list_classes
@@ -15,12 +23,17 @@ class FreeFitness::CLI
   end
 
   def menu
-    puts "Search for your next free class by:"
-    puts "1. time [morning, afternoon, evening]"
-    puts "2. style [ashtanga, vinyasa, bikram]"
-    puts "3. level [beginner, intermediate, advanced]"
-    puts "4. specials"
-    puts "--please select by entering 1-3:"
+    puts "[ > The eightfold path: 8 limbs of Yoga < ]"
+    puts "1. Yama"
+    puts "2. Niyama"
+    puts "3. Asana"
+    puts "4. Pranayama"
+    puts "5. Pratyahara"
+    puts "6. Dharana"
+    puts "7. Dhyana"
+    puts "8. Samadhi"
+    puts "select a limb to learn more about 1-8:"
+    puts ""
   end
 
 end

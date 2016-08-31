@@ -1,7 +1,6 @@
-# require 'open-uri'
-# require 'nokogiri'
-# require 'pry'
-# require 'iconv'
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
 
 class Scraper
 
@@ -11,8 +10,11 @@ class Scraper
 
   def quotes
     quotes = Nokogiri::HTML(open("http://www.lexiyoga.com/yoga-quotes"))
-    quote = quotes.css("p q").text
-    binding.pry
+    i = 0 + rand(20)
+    quote = quotes.css("p q")[i].text
+    
+    # binding.pry
+    puts quote
     # i = 1 + rand(11)
     # i = 0
     # quotes_array = []
@@ -22,10 +24,11 @@ class Scraper
   end
 
   def intro
-    self.get_page.css("div p")[1].text
+     intro = self.get_page.css("div p")[1].text
+        puts intro 
   end
 
-  def limbs_list
+  def make_limb_list
     i = 0
     limbs_hash = {}
     limbs_hash[:limbs] = self.get_page.css("h2")[i].text
@@ -46,11 +49,10 @@ class Scraper
       self.get_page.css("p")[23].text, #dhyana
       self.get_page.css("p")[24].text #samadhi
       ]
-      binding.pry
     end
 
-  end
-Scraper.new.limbs
+end
+# Scraper.new.limbs_description
   #   limbs_hash[:yamas] = self.get_page.css("p")[3].text - self.get_page.css("p")[7].text
 
 

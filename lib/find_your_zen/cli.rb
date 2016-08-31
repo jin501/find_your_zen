@@ -51,7 +51,7 @@ class FindYourZen::CLI
       start
     elsif input.to_i > 0
       index = input.to_i - 1
-      print_info(index)
+      print_details(index)
 
     else input.to_i == 0
       title
@@ -60,17 +60,20 @@ class FindYourZen::CLI
     end
   end
 
-  def print_details(input)
-    puts ""
-    puts "----------- #{zen.name} - #{zen.position} -----------"
-    puts ""
-    puts "quote"
-    puts ""
-    puts "---------------Description--------------"
-    puts ""
-    puts "#{zen.description}"
-    puts ""
+  def print_details(index)
+    print_info(index)
+    # puts "----------- #{zen.index} - #{zen.name} -----------"
+    # puts ""
+    # puts "quote"
+    # puts ""
+    # puts "---------------Description--------------"
+    # puts ""
+    # puts "#{zen.description}"
+    # puts ""
     puts "---------------Learn More--------------"
+    puts ""
+    menu_options
+    puts ""
   end
 
   def print_info(index)
@@ -78,23 +81,24 @@ class FindYourZen::CLI
   end
 
 
-  def menu_options(input)
-
+  def menu_options
     puts ""
     puts "enter an option:"
-    puts "[back] [next] [go to site] [exit]"
+    puts "[back] [more] [go to site] [exit]"
     puts ""
 
     input = gets.strip.downcase
     if input == "back"
+      title
       menu
-    elsif input == "next"
-      #method to go to next page, call it here
+      start
+    elsif input == "more"
+      #method to go to more page, call it here
     elsif input == "go to site"
       #method that launches site
     elsif input == "exit"
       puts ""
-      puts "Bye!"
+      puts "Namaste!"
     else
       puts "please enter one of the following:"       
     end

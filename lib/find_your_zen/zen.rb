@@ -4,7 +4,7 @@ class FindYourZen::Zen
 
   @@all = []
 
-  def initialize(name = nil, description = nil)
+  def initialize(name = nil, index = nil)
     @name = name
     @description = description
   end
@@ -15,12 +15,11 @@ class FindYourZen::Zen
 
       #make this method print each value in hash
 
-  def description
-    Scraper.new.limbs_description[@index]
+  def description(index)
+    Scraper.new.limbs_description[index]
   end
 
-  def input_to_index(input)
-    index = input.to_i - 1
-    @index = index    
-  end
+
+
 end
+

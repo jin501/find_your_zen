@@ -3,7 +3,6 @@ require_relative 'scraper'
 class FindYourZen::CLI
 
   def call
-    FindYourZen::Zen.new.input_to_index(2)
     title
     intro
     menu
@@ -61,17 +60,17 @@ class FindYourZen::CLI
   end
 
   def print_details(index)
-    print_info(index)
+    # print_info(index)
     # puts "----------- #{zen.index} - #{zen.name} -----------"
-    # puts ""
-    # puts "quote"
-    # puts ""
-    # puts "---------------Description--------------"
-    # puts ""
-    # puts "#{zen.description}"
-    # puts ""
-    puts "---------------Learn More--------------"
     puts ""
+    puts "quote"
+    puts ""
+    puts "---------------Description--------------"
+    puts ""
+    puts print_info(index)
+    puts ""
+    puts "---------------Learn More--------------"
+    # puts ""
     menu_options
     puts ""
   end
@@ -83,7 +82,6 @@ class FindYourZen::CLI
 
   def menu_options
     puts ""
-    puts "enter an option:"
     puts "[back] [more] [go to site] [exit]"
     puts ""
 
@@ -93,6 +91,7 @@ class FindYourZen::CLI
       menu
       start
     elsif input == "more"
+      zen.more
       #method to go to more page, call it here
     elsif input == "go to site"
       #method that launches site
@@ -100,7 +99,8 @@ class FindYourZen::CLI
       puts ""
       puts "Namaste!"
     else
-      puts "please enter one of the following:"       
+      puts "please enter one of the following:"
+      menu_options     
     end
   end
   

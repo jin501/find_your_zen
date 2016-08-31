@@ -3,6 +3,7 @@ require_relative 'scraper'
 class FindYourZen::CLI
 
   def call
+    FindYourZen::Zen.new.input_to_index(2)
     title
     intro
     menu
@@ -10,9 +11,9 @@ class FindYourZen::CLI
   end
 
   def title
-    puts "------------------------------------"
+    puts "----------------------------------------"
     puts "[ > The eightfold path: 8 limbs of Yoga < ]"
-    puts "------------------------------------"
+    puts "----------------------------------------"
     puts ""
   end
 
@@ -49,8 +50,8 @@ class FindYourZen::CLI
       menu
       start
     elsif input.to_i > 0
-
-      print_info
+      index = input.to_i - 1
+      print_info(index)
 
     else input.to_i == 0
       title
@@ -59,6 +60,22 @@ class FindYourZen::CLI
     end
   end
 
+  def print_details(input)
+    puts ""
+    puts "----------- #{zen.name} - #{zen.position} -----------"
+    puts ""
+    puts "quote"
+    puts ""
+    puts "---------------Description--------------"
+    puts ""
+    puts "#{zen.description}"
+    puts ""
+    puts "---------------Learn More--------------"
+  end
+
+  def print_info(index)
+    puts Scraper.new.limbs_description[index]
+  end
 
 
   def menu_options(input)
@@ -83,22 +100,5 @@ class FindYourZen::CLI
     end
   end
   
-
-  def print_details(input)
-    puts ""
-    puts "----------- #{zen.name} - #{zen.position} -----------"
-    puts ""
-    puts "quote"
-    puts ""
-    puts "---------------Description--------------"
-    puts ""
-    puts "#{zen.description}"
-    puts ""
-    puts "---------------Learn More--------------"
-  end
-
-  def print_info
-    puts Scraper.new.limbs_description[0]
-  end
 
 end

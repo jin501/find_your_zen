@@ -1,6 +1,6 @@
 class FindYourZen::Zen
 
-  attr_accessor :name, :position, :description, :more_info
+  attr_accessor :name, :position, :description, :more_info, :index
 
   @@all = []
 
@@ -16,11 +16,11 @@ class FindYourZen::Zen
       #make this method print each value in hash
 
   def description
-    Scraper.new.limbs_description[input]
+    Scraper.new.limbs_description[@index]
   end
 
   def input_to_index(input)
     index = input.to_i - 1
+    @index = index    
   end
-
 end

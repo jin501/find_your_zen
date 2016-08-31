@@ -1,6 +1,6 @@
 class FindYourZen::Zen
 
-  attr_accessor :name, :position, :description, :more_info, :index
+  attr_accessor :name, :position, :description, :more, :index
 
   @@all = []
 
@@ -20,6 +20,15 @@ class FindYourZen::Zen
   end
 
 
+  def more
+    if @index == 1
+      #list yamas
+    elsif @index == 2
+      #list niyamas
+    else 
+      reroute
+    end
+  end
 
 end
 

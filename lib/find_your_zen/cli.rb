@@ -63,15 +63,15 @@ class FindYourZen::CLI
     # print_info(index)
     # puts "----------- #{zen.index} - #{zen.name} -----------"
     puts ""
-    puts "quote"
-    puts ""
+    puts "\""
+    puts Scraper.new.quotes
+    puts "\""
     puts "---------------Description--------------"
     puts ""
     puts print_info(index)
     puts ""
     puts "---------------Learn More--------------"
-    # puts ""
-    menu_options
+    menu_options(index)
     puts ""
   end
 
@@ -80,9 +80,9 @@ class FindYourZen::CLI
   end
 
 
-  def menu_options
+  def menu_options(index)
     puts ""
-    puts "[back] [more] [go to site] [exit]"
+    puts "[back] [next] [more] [go to site] [exit]"
     puts ""
 
     input = gets.strip.downcase
@@ -90,6 +90,11 @@ class FindYourZen::CLI
       title
       menu
       start
+    elsif input == "next"
+      puts ""
+      index = index + 1
+      print_details(index)
+
     elsif input == "more"
       zen.more
       #method to go to more page, call it here

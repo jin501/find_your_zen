@@ -14,6 +14,7 @@ class FindYourZen::CLI
     puts ""
 
     Scraper.new.make_limbs
+
     title
     intro
     menu
@@ -32,24 +33,16 @@ class FindYourZen::CLI
   end
 
   def menu
+    limb = FindYourZen::Zen.all
     puts ""
     puts "The 8 limbs of yoga are:"
     puts ""
-   
     i = 0
     8.times do
-      puts FindYourZen::Zen.all[i].name
+      puts limb[i].name.gsub('\n', '')
       i+=1
+    puts ""
     end
-    # puts "1. Yama"
-    # puts "2. Niyama"
-    # puts "3. Asana"
-    # puts "4. Pranayama"
-    # puts "5. Pratyahara"
-    # puts "6. Dharana"
-    # puts "7. Dhyana"
-    # puts "8. Samadhi"
-    # puts ""
   end
 
   def start
@@ -58,6 +51,7 @@ class FindYourZen::CLI
     puts "<enter exit to end the program>"
     puts ""
     input = gets.strip
+    puts ""
 
     if input == "exit"
       puts ""
@@ -67,10 +61,16 @@ class FindYourZen::CLI
       title
       menu
       start
-    elsif input.to_i > 0
-      index = input.to_i - 1
-      print_details(index)
 
+    elsif input.to_i > 0
+      i = input.to_i - 1
+
+      print_details(i)
+
+
+      puts limb[index].description
+
+      
     else input.to_i == 0
       title
       menu
@@ -78,22 +78,24 @@ class FindYourZen::CLI
     end
   end
 
-  def print_details(index)
+  def print_details(i)
+    limb = FindYourZen::Zen.all
 
-    limb = Scraper.new.make_limbs(index) 
+    # limb = Scraper.new.make_limbs(index) 
     puts ""
-    puts "--------------#{limb.name}-----------------"
+    puts "--------------#{limb[i].name}-----------------"
     puts ""
     puts "\""
     puts Scraper.new.quotes
     puts "\""
-    puts "---------------Description--------------"
+    puts "---------------About this limb--------------"
     puts ""
-    puts print_info(index)
+    puts limb[i].description
+    # puts print_info(index)
     puts ""
     puts "---------------Learn More--------------"
     puts ""
-    menu_options(index)
+    menu_options(i)
     puts ""
   end
 
@@ -102,7 +104,7 @@ class FindYourZen::CLI
     puts Scraper.new.limbs_description[index]
   end
 
-  def menu_options(index)
+  def menu_options(i)
     puts ""
     puts "[back] [next] [more] [go to site] [exit]"
     puts ""
@@ -114,8 +116,12 @@ class FindYourZen::CLI
       start
     elsif input == "next"
       puts ""
-      index = index + 1
-      print_details(index)
+      if i == 7
+        puts "[this is the last limb, please enter 'back' to return to main menu]"
+
+      else i = i + 1
+        print_details(i)
+      end
 
     elsif input == "more"
       limb.more
@@ -127,7 +133,7 @@ class FindYourZen::CLI
       puts "Namaste!"
     else
       puts "please enter one of the following:"
-      menu_options(index)
+      menu_options(i)
     end
   end
   

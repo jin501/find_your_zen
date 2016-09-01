@@ -48,7 +48,7 @@ class FindYourZen::CLI
 
   def start
     puts ""
-    puts "[select a limb 1-8 to learn more:]".colorize(:white).on_green
+    puts "[select a limb 1-8 to learn more]".colorize(:blue)
     # puts ""
     puts "[enter 'exit' to end the program]".colorize(:red)
     puts ""
@@ -61,7 +61,7 @@ class FindYourZen::CLI
       b = "♥".colorize(:red) 
       c = "Jai Bhwagan 🙏 "
       puts a+b+c
-      
+
     elsif input.to_i > 8
       title
       menu
@@ -82,9 +82,8 @@ class FindYourZen::CLI
   def print_details(i)
     limb = FindYourZen::Zen.all
 
-    # limb = Scraper.new.make_limbs(index) 
     puts ""
-    puts "--------------ॐ #{limb[i].name} ॐ-----------------"
+    puts "--------------ॐ  #{limb[i].name} ॐ -----------------"
     puts ""
     Scraper.new.quotes
     puts ""
@@ -98,15 +97,10 @@ class FindYourZen::CLI
     puts ""
   end
 
-  # def print_info(index)
-  #   # limb.descipriton(index)
-  #   puts Scraper.new.limbs_description[index]
-  # end
-
   def menu_options(i)
     limb = FindYourZen::Zen.all
     puts ""
-    puts "[back] [next] [details] [site] [exit]"
+    puts "[back] [next] [details] [site] [exit]".colorize(:blue)
     puts ""
     input = gets.strip.downcase
 
@@ -118,8 +112,12 @@ class FindYourZen::CLI
     elsif input == "next"
       puts ""
       if i == 7
-        puts "[this is the last limb, please enter 'back' to return to main menu]"
-        menu_options(i)
+        puts "[this is the last limb. returning to main menu..]".colorize(:gray)
+        puts ""
+        puts ""
+        title
+        menu
+        start
       else i = i + 1
         print_details(i)
       end
@@ -127,7 +125,7 @@ class FindYourZen::CLI
     elsif input == "details" 
       puts ""
       if i == 0 || i == 1
-        puts "[to master this limb, one must be mindful of these practices:]"
+        puts "---To master this limb, one must be mindful of these practices:"
         puts limb[i].more
         menu_options(i)
       else 
@@ -136,11 +134,16 @@ class FindYourZen::CLI
       end
 
     elsif input == "site"
-      #method that launches site
-
+      Launchy.open( "http://www.yogajournal.com/article/beginners/the-eight-limbs/" )
+      menu_options(i)
+      puts ""
     elsif input == "exit"
       puts ""
-      puts " 🙏  Namaste ♥ Jai Bhwagan 🙏 "
+      a = " 🙏  Namaste" 
+      b = "♥".colorize(:red) 
+      c = "Jai Bhwagan 🙏 "
+      puts a+b+c
+      puts ""
     else
       puts "please enter one of the following:"
       menu_options(i)

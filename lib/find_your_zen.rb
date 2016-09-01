@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 require 'colorize'
+require 'launchy'
 
 require_relative "find_your_zen/version"
 require_relative "find_your_zen/cli"

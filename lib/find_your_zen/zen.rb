@@ -1,23 +1,34 @@
 class FindYourZen::Zen
 
-  attr_accessor :name, :position, :description, :more, :place
+  attr_accessor :name, :description, :more
 
   @@all = []
 
-  def initialize(name = nil, place = nil)
+  def initialize(name:, description:, more: nil)
     @name = name
-    @place = place
-    # self.all << self
+    @description = description
+    @@all << self
   end
 
-      #make this method print each value in hash
+  def self.all
+    @@all
+  end
+
+  def find_by_name
+
+  end
+
+  def find(input)
+    self.all[input-1]
+  end
+
 
   # def description(index)
   #   Scraper.new.limbs_description[index]
   # end
 
   # def description(place)
-    
+
 
   # def more
   #   if @place == 1

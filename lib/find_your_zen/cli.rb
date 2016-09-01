@@ -3,7 +3,18 @@ require_relative 'scraper'
 class FindYourZen::CLI
 
   def call
-    # FindYourZen::Zen.new.description(place)
+    puts "Welcome"
+    puts ""
+    puts "....scraping content...."
+    puts ""
+    puts ""
+    puts "....creating instances...."
+    puts ""
+    puts "patience..."
+    puts ""
+
+    Scraper.new.make_limbs
+    
     title
     intro
     menu
@@ -85,9 +96,9 @@ class FindYourZen::CLI
   end
 
   def print_info(index)
+    # limb.descipriton(input)
     puts Scraper.new.limbs_description[index]
   end
-
 
   def menu_options(index)
     puts ""

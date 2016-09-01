@@ -21,21 +21,22 @@ class Scraper
         puts intro 
   end
 
-  def make_limbs(place)
-    i = place 
-    # place = 1
-    limbs_hash = {}
-    # until i == 8
-    x = FindYourZen::Zen.new(limbs_hash[:limbs] = self.get_page.css("h2")[i].text, place)
-    # i += 1
-    # place += 1
-    # binding.pry
-    # end
+  def make_limbs
+    i = 0
+    8.times do 
+      limbs_hash = {
+        name: self.get_page.css("h2")[i].text,
+        description: self.get_limbs_description[i]
+      }
+      # FindYourZen::Zen.new(limbs_hash[:limbs] = self.get_page.css("h2")[i].text, limbs_hash[:description] = self.limbs_description[i])
+      FindYourZen::Zen.new(limbs_hash)
+      i += 1
+    end
   end
 
 # Scraper.new.limbs_list
 
-  def limbs_description
+  def get_limbs_description
     limbs_hash = {}
     limbs_hash[:description] = [self.get_page.css("p")[2].text, #yamas desc
       self.get_page.css("p")[8].text, #niyamas desc
@@ -47,6 +48,21 @@ class Scraper
       self.get_page.css("p")[24].text #samadhi
       ]
     end
+
+  # def limbs_description(place)
+  #   i = place
+  #   limbs_hash = {}
+  #   x = FindYourZen::Zen.new(limbs_hash[:description])
+  #   limbs_hash[:description] = [self.get_page.css("p")[2].text, #yamas desc
+  #     self.get_page.css("p")[8].text, #niyamas desc
+  #     self.get_page.css("p")[15].text, #asanas desc
+  #     self.get_page.css("p")[17].text, #pranayama
+  #     self.get_page.css("p")[20].text, #pratyhara desc
+  #     self.get_page.css("p")[21].text, #dharana 
+  #     self.get_page.css("p")[23].text, #dhyana
+  #     self.get_page.css("p")[24].text #samadhi
+  #     ]
+  #   end
 
 end
 # Scraper.new.limbs_description

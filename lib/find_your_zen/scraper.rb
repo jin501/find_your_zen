@@ -22,15 +22,15 @@ class Scraper
   end
 
   def make_limbs(place)
-    i = 0
-    place = 1
+    i = place 
+    # place = 1
     limbs_hash = {}
-    until i == 8
+    # until i == 8
     x = FindYourZen::Zen.new(limbs_hash[:limbs] = self.get_page.css("h2")[i].text, place)
-    i += 1
-    place += 1
+    # i += 1
+    # place += 1
     # binding.pry
-    end
+    # end
   end
 
 # Scraper.new.limbs_list

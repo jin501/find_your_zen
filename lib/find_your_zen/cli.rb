@@ -3,7 +3,7 @@ require_relative 'scraper'
 class FindYourZen::CLI
 
   def call
-    
+    # FindYourZen::Zen.new.description(place)
     title
     intro
     menu
@@ -66,8 +66,10 @@ class FindYourZen::CLI
   end
 
   def print_details(index)
-    # print_info(index)
-    puts Scraper.new.make_limbs(index)
+
+    limb = Scraper.new.make_limbs(index) 
+    puts ""
+    puts "--------------#{limb.name}-----------------"
     puts ""
     puts "\""
     puts Scraper.new.quotes
@@ -103,7 +105,7 @@ class FindYourZen::CLI
       print_details(index)
 
     elsif input == "more"
-      zen.more
+      limb.more
       #method to go to more page, call it here
     elsif input == "go to site"
       #method that launches site
@@ -112,7 +114,7 @@ class FindYourZen::CLI
       puts "Namaste!"
     else
       puts "please enter one of the following:"
-      menu_options     
+      menu_options(index)
     end
   end
   

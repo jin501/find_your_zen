@@ -10,26 +10,24 @@ class FindYourZen::Zen
     # self.all << self
   end
 
-
-      # index = input_to_index(input)
-      # limb_array[index] 
-
       #make this method print each value in hash
 
-  def description(index)
-    Scraper.new.limbs_description[index]
-  end
+  # def description(index)
+  #   Scraper.new.limbs_description[index]
+  # end
 
+  # def description(place)
+    
 
-  def more
-    if @index == 1
-      #list yamas
-    elsif @index == 2
-      #list niyamas
-    else 
-      reroute
-    end
-  end
+  # def more
+  #   if @place == 1
+  #     #list yamas
+  #   elsif @place == 2
+  #     #list niyamas
+  #   else 
+  #     reroute
+  #   end
+  # end
 
 end
 

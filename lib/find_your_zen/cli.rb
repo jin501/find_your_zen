@@ -3,6 +3,7 @@ require_relative 'scraper'
 class FindYourZen::CLI
 
   def call
+    
     title
     intro
     menu
@@ -10,9 +11,9 @@ class FindYourZen::CLI
   end
 
   def title
-    puts "----------------------------------------"
-    puts "[ > The eightfold path: 8 limbs of Yoga < ]"
-    puts "----------------------------------------"
+    puts "-------------------------------------------"
+    puts "[ॐ  The eightfold path: 8 limbs of Yoga ॐ ]"
+    puts "-------------------------------------------"
     puts ""
   end
 
@@ -21,6 +22,7 @@ class FindYourZen::CLI
   end
 
   def menu
+    puts ""
     puts "The 8 limbs of yoga are:"
     puts ""
     puts "1. Yama"
@@ -37,13 +39,17 @@ class FindYourZen::CLI
   def start
     puts "select a limb to learn more [enter a number 1-8]:"
     puts ""
-    puts "<enter exit to end the program.>"
+    puts "<enter exit to end the program>"
     puts ""
     input = gets.strip
 
     if input == "exit"
       puts ""
       puts "Namaste, Jai Bhwagan"
+
+
+
+
     elsif input.to_i > 8
       title
       menu
@@ -61,7 +67,7 @@ class FindYourZen::CLI
 
   def print_details(index)
     # print_info(index)
-    # puts "----------- #{zen.index} - #{zen.name} -----------"
+    puts Scraper.new.make_limbs(index)
     puts ""
     puts "\""
     puts Scraper.new.quotes
@@ -71,6 +77,7 @@ class FindYourZen::CLI
     puts print_info(index)
     puts ""
     puts "---------------Learn More--------------"
+    puts ""
     menu_options(index)
     puts ""
   end

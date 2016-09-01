@@ -1,12 +1,13 @@
 class FindYourZen::Zen
 
-  attr_accessor :name, :position, :description, :more, :index
+  attr_accessor :name, :position, :description, :more, :place
 
   @@all = []
 
-  def initialize(name = nil, index = nil)
+  def initialize(name = nil, place = nil)
     @name = name
-    @description = description
+    @place = place
+    # self.all << self
   end
 
 

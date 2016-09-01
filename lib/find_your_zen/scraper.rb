@@ -12,15 +12,8 @@ class Scraper
     quotes = Nokogiri::HTML(open("http://www.lexiyoga.com/yoga-quotes"))
     i = 0 + rand(20)
     quote = quotes.css("p q")[i].text
-    
-    # binding.pry
+ 
     puts quote
-    # i = 1 + rand(11)
-    # i = 0
-    # quotes_array = []
-    # q = quotes.css("p q")[i].text.each do
-    #   quotes_array << q
-    #   i += 1
   end
 
   def intro
@@ -28,12 +21,16 @@ class Scraper
         puts intro 
   end
 
-  def make_limb_list
+  def make_limbs(place)
     i = 0
+    place = 1
     limbs_hash = {}
-    limbs_hash[:limbs] = self.get_page.css("h2")[i].text
+    until i == 8
+    x = FindYourZen::Zen.new(limbs_hash[:limbs] = self.get_page.css("h2")[i].text, place)
     i += 1
+    place += 1
     # binding.pry
+    end
   end
 
 # Scraper.new.limbs_list

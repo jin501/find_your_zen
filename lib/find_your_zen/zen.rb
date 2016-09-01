@@ -14,12 +14,15 @@ class FindYourZen::Zen
     @@all
   end
 
-  def find_by_name
-
+  def self.find(input)
+    self.all[input-1]
   end
 
-  def find(input)
-    self.all[input-1]
+  def self.find_by_name(name)
+    self.all.detect do |m|
+      m.name.downcase.strip == name.downcase.strip ||
+      m.name.split("(").first.strip.downcase == name.downcase.strip
+    end
   end
 
 

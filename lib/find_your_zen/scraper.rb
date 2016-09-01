@@ -31,6 +31,8 @@ class Scraper
       # FindYourZen::Zen.new(limbs_hash[:limbs] = self.get_page.css("h2")[i].text, limbs_hash[:description] = self.limbs_description[i])
       FindYourZen::Zen.new(limbs_hash)
       i += 1
+          
+
     end
   end
 

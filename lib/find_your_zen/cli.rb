@@ -8,13 +8,12 @@ class FindYourZen::CLI
     puts "....scraping content...."
     puts ""
     puts ""
-    puts "....creating instances...."
+    puts "            ....creating instances...."
     puts ""
-    puts "patience..."
+    puts "                                 ...patience..."
     puts ""
 
     Scraper.new.make_limbs
-    
     title
     intro
     menu
@@ -36,15 +35,21 @@ class FindYourZen::CLI
     puts ""
     puts "The 8 limbs of yoga are:"
     puts ""
-    puts "1. Yama"
-    puts "2. Niyama"
-    puts "3. Asana"
-    puts "4. Pranayama"
-    puts "5. Pratyahara"
-    puts "6. Dharana"
-    puts "7. Dhyana"
-    puts "8. Samadhi"
-    puts ""
+   
+    i = 0
+    8.times do
+      puts FindYourZen::Zen.all[i].name
+      i+=1
+    end
+    # puts "1. Yama"
+    # puts "2. Niyama"
+    # puts "3. Asana"
+    # puts "4. Pranayama"
+    # puts "5. Pratyahara"
+    # puts "6. Dharana"
+    # puts "7. Dhyana"
+    # puts "8. Samadhi"
+    # puts ""
   end
 
   def start
@@ -57,9 +62,6 @@ class FindYourZen::CLI
     if input == "exit"
       puts ""
       puts "Namaste, Jai Bhwagan"
-
-
-
 
     elsif input.to_i > 8
       title
@@ -96,7 +98,7 @@ class FindYourZen::CLI
   end
 
   def print_info(index)
-    # limb.descipriton(input)
+    # limb.descipriton(index)
     puts Scraper.new.limbs_description[index]
   end
 

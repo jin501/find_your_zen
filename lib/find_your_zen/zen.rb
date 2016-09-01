@@ -7,6 +7,7 @@ class FindYourZen::Zen
   def initialize(name:, description:, more: nil)
     @name = name
     @description = description
+    @more = more
     @@all << self
   end
 
@@ -24,6 +25,7 @@ class FindYourZen::Zen
       m.name.split("(").first.strip.downcase == name.downcase.strip
     end
   end
+   
 
 
   # def description(index)

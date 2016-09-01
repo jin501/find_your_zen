@@ -13,12 +13,12 @@ class Scraper
     i = 0 + rand(20)
     quote = quotes.css("p q")[i].text
  
-    puts quote
+    puts quote.colorize(:light_blue)
   end
 
   def intro
      intro = self.get_page.css("div p")[1].text
-        puts intro 
+        puts intro.colorize(:green)
   end
 
   def make_limbs
@@ -28,13 +28,20 @@ class Scraper
         name: self.get_page.css("h2")[i].text,
         description: self.get_limbs_description[i]
       }
-      # FindYourZen::Zen.new(limbs_hash[:limbs] = self.get_page.css("h2")[i].text, limbs_hash[:description] = self.limbs_description[i])
+      if i == 0
+          limbs_hash[:more] = self.get_page.css("p")[3..7].text.gsub(/(?=[A-Z])/, '!').split("!")
+        elsif i == 1
+          limbs_hash[:more] = self.get_page.css("p")[8..13].text.gsub(/(?=[A-Z])/, '!').split("!")
+        else
+          limbs_hash[:more] = nil
+      end
+
       FindYourZen::Zen.new(limbs_hash)
       i += 1
-          
-
     end
   end
+
+          # limbs_hash[:niyamas] = self.get_page.css("p")[8].text - self.get_page.css("p")[13].text
 
 # Scraper.new.limbs_list
 
@@ -65,8 +72,8 @@ class Scraper
   #     self.get_page.css("p")[24].text #samadhi
   #     ]
   #   end
-
 end
+
 # Scraper.new.limbs_description
   #   limbs_hash[:yamas] = self.get_page.css("p")[3].text - self.get_page.css("p")[7].text
 

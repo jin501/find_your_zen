@@ -3,16 +3,16 @@ require_relative 'scraper'
 class FindYourZen::CLI
 
   def call
-    puts "Welcome"
+    puts " Welcome 🙏"
     puts ""
-    puts "....scraping content...."
+    puts "....scraping content....✨"
     puts ""
+    puts "            ....creating instances....✨"
     puts ""
-    puts "            ....creating instances...."
+    puts "                                    ...patience...✨"
     puts ""
-    puts "                                 ...patience..."
+    puts "\"one who masters patience masters everything else..\"".colorize(:light_blue)
     puts ""
-
     Scraper.new.make_limbs
 
     title
@@ -32,6 +32,7 @@ class FindYourZen::CLI
     Scraper.new.intro
   end
 
+
   def menu
     limb = FindYourZen::Zen.all
     puts ""
@@ -39,24 +40,28 @@ class FindYourZen::CLI
     puts ""
     i = 0
     8.times do
-      puts limb[i].name.gsub('\n', '')
+      puts limb[i].name
       i+=1
     puts ""
     end
   end
 
   def start
-    puts "select a limb to learn more [enter a number 1-8]:"
     puts ""
-    puts "<enter exit to end the program>"
+    puts "[select a limb 1-8 to learn more:]".colorize(:white).on_green
+    # puts ""
+    puts "[enter 'exit' to end the program]".colorize(:red)
     puts ""
     input = gets.strip
     puts ""
 
     if input == "exit"
       puts ""
-      puts "Namaste, Jai Bhwagan"
-
+      a = " 🙏  Namaste" 
+      b = "♥".colorize(:red) 
+      c = "Jai Bhwagan 🙏 "
+      puts a+b+c
+      
     elsif input.to_i > 8
       title
       menu
@@ -66,10 +71,6 @@ class FindYourZen::CLI
       i = input.to_i - 1
 
       print_details(i)
-
-
-      puts limb[index].description
-
       
     else input.to_i == 0
       title
@@ -83,15 +84,13 @@ class FindYourZen::CLI
 
     # limb = Scraper.new.make_limbs(index) 
     puts ""
-    puts "--------------#{limb[i].name}-----------------"
+    puts "--------------ॐ #{limb[i].name} ॐ-----------------"
     puts ""
-    puts "\""
-    puts Scraper.new.quotes
-    puts "\""
+    Scraper.new.quotes
+    puts ""
     puts "---------------About this limb--------------"
     puts ""
     puts limb[i].description
-    # puts print_info(index)
     puts ""
     puts "---------------Learn More--------------"
     puts ""
@@ -99,43 +98,55 @@ class FindYourZen::CLI
     puts ""
   end
 
-  def print_info(index)
-    # limb.descipriton(index)
-    puts Scraper.new.limbs_description[index]
-  end
+  # def print_info(index)
+  #   # limb.descipriton(index)
+  #   puts Scraper.new.limbs_description[index]
+  # end
 
   def menu_options(i)
+    limb = FindYourZen::Zen.all
     puts ""
-    puts "[back] [next] [more] [go to site] [exit]"
+    puts "[back] [next] [details] [site] [exit]"
     puts ""
-
     input = gets.strip.downcase
+
     if input == "back"
       title
       menu
       start
+
     elsif input == "next"
       puts ""
       if i == 7
         puts "[this is the last limb, please enter 'back' to return to main menu]"
-
+        menu_options(i)
       else i = i + 1
         print_details(i)
       end
 
-    elsif input == "more"
-      limb.more
-      #method to go to more page, call it here
-    elsif input == "go to site"
+    elsif input == "details" 
+      puts ""
+      if i == 0 || i == 1
+        puts "[to master this limb, one must be mindful of these practices:]"
+        puts limb[i].more
+        menu_options(i)
+      else 
+        puts "[to learn more about this limb enter 'site' to launch to website]"
+        menu_options(i)
+      end
+
+    elsif input == "site"
       #method that launches site
+
     elsif input == "exit"
       puts ""
-      puts "Namaste!"
+      puts " 🙏  Namaste ♥ Jai Bhwagan 🙏 "
     else
       puts "please enter one of the following:"
       menu_options(i)
     end
   end
-  
+ 
+
 
 end

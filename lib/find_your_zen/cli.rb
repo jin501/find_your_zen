@@ -2,6 +2,24 @@
 require_relative 'scraper'
 class FindYourZen::CLI
 
+  attr_reader :scraper
+  
+  def initialize
+
+    @scraper = Scraper.new
+
+  end
+
+
+  # def call
+  #   welcome
+  #   make_scraper
+  #   title
+  #   intro
+  #   menu_options
+  #   start
+  # end
+
   def call
     puts " Welcome 🙏"
     puts ""
@@ -13,8 +31,8 @@ class FindYourZen::CLI
     puts ""
     puts "\"one who masters patience masters everything else..\"".colorize(:light_blue)
     puts ""
-    Scraper.new.make_limbs
-
+    scraper.make_limbs
+    # binding.pry
     title
     intro
     menu
@@ -29,21 +47,28 @@ class FindYourZen::CLI
   end
 
   def intro
-    Scraper.new.intro
+    scraper.intro
   end
 
 
   def menu
-    limb = FindYourZen::Zen.all
+    limbs = FindYourZen::Zen.all
     puts ""
     puts "The 8 limbs of yoga are:"
     puts ""
-    i = 0
-    8.times do
-      puts limb[i].name
-      i+=1
-    puts ""
+    # i = 0
+    # 8.times do
+    #   puts limbs[i].name
+    #   i+=1
+    # puts ""
+    # end
+    limbs.each do |limb|
+      puts limb.name
+      puts ""
     end
+    # FindYourZen::Zen.all.each do |limb|
+    #   puts limb
+    # end
   end
 
   def start
@@ -81,7 +106,7 @@ class FindYourZen::CLI
 
   def print_details(i)
     limb = FindYourZen::Zen.all
-
+    
     puts ""
     puts "--------------ॐ  #{limb[i].name} ॐ -----------------"
     puts ""

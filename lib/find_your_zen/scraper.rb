@@ -14,14 +14,6 @@ class Scraper
     Nokogiri::HTML(open("http://www.yogajournal.com/article/beginners/the-eight-limbs/"))
   end
 
-  def quotes
-    quotes = Nokogiri::HTML(open("http://www.lexiyoga.com/yoga-quotes"))
-    i = 0 + rand(20)
-    quote = quotes.css("p q")[i].text
- 
-    puts quote.colorize(:light_blue)
-  end
-
   def intro
      intro = page.css("div p")[1].text
         puts intro

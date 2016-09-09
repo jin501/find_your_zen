@@ -1,13 +1,14 @@
 #Our CLI Controller
 require_relative 'scraper'
+require_relative 'quote_scraper' #this is required for this file to know about quote_scraper
 class FindYourZen::CLI
 
-  attr_reader :scraper
+  attr_reader :scraper, :quotescraper
   
   def initialize
 
     @scraper = Scraper.new
-
+    @quotescraper = QuoteScraper.new
   end
 
 
@@ -32,7 +33,7 @@ class FindYourZen::CLI
     puts "\"one who masters patience masters everything else..\"".colorize(:light_blue)
     puts ""
     scraper.make_limbs
-    # binding.pry
+
     title
     intro
     menu
@@ -110,7 +111,7 @@ class FindYourZen::CLI
     puts ""
     puts "--------------ॐ  #{limb[i].name} ॐ -----------------"
     puts ""
-    Scraper.new.quotes
+    quotescraper.quotes
     puts ""
     puts "---------------About this limb--------------"
     puts ""

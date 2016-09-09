@@ -6,22 +6,20 @@ class FindYourZen::CLI
   attr_reader :scraper, :quotescraper
   
   def initialize
-
     @scraper = Scraper.new
     @quotescraper = QuoteScraper.new
   end
 
-
-  # def call
-  #   welcome
-  #   make_scraper
-  #   title
-  #   intro
-  #   menu_options
-  #   start
-  # end
-
   def call
+    welcome
+    scraper.make_limbs
+    title
+    intro
+    menu
+    start
+  end
+
+  def welcome
     puts " Welcome 🙏"
     puts ""
     puts "....scraping content....✨"
@@ -32,12 +30,6 @@ class FindYourZen::CLI
     puts ""
     puts "\"one who masters patience masters everything else..\"".colorize(:light_blue)
     puts ""
-    scraper.make_limbs
-
-    title
-    intro
-    menu
-    start
   end
 
   def title
@@ -57,19 +49,11 @@ class FindYourZen::CLI
     puts ""
     puts "The 8 limbs of yoga are:"
     puts ""
-    # i = 0
-    # 8.times do
-    #   puts limbs[i].name
-    #   i+=1
-    # puts ""
-    # end
+
     limbs.each do |limb|
       puts limb.name
       puts ""
     end
-    # FindYourZen::Zen.all.each do |limb|
-    #   puts limb
-    # end
   end
 
   def start
@@ -111,7 +95,7 @@ class FindYourZen::CLI
     puts ""
     puts "--------------ॐ  #{limb[i].name} ॐ -----------------"
     puts ""
-    quotescraper.quotes
+    puts quotescraper.quotes
     puts ""
     puts "---------------About this limb--------------"
     puts ""
@@ -176,6 +160,5 @@ class FindYourZen::CLI
     end
   end
  
-
 
 end

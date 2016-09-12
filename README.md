@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Learn about Yoga Philosophy with this gem. This gem will help you get a better understanding of yoga philosophy, specifically the eight limbs of yoga. Install this gem, and run gem as instructed above. Once in the menu, enter a number 1 through 8 to learn about the respective limb of yoga. 
 
 ## Development
 
